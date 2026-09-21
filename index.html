@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propels | Conseils en Gestion d'Entreprises</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'propels-dark': '#0d1b2a',
+                        'propels-blue': '#1d4ed8',
+                        'propels-orange': '#f97316',
+                        'propels-light': '#f0f9ff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231d4ed8' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .shape-blob {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite;
+        }
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-full border-4 border-propels-dark flex items-center justify-center relative">
+                            <span class="text-propels-dark font-bold text-xl">P</span>
+                            <div class="absolute -right-2 -bottom-1 w-4 h-4 bg-propels-orange rounded-full border-2 border-white"></div>
+                        </div>
+                        <span class="font-bold text-2xl text-propels-dark tracking-tight">ropels</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#accueil" class="text-gray-600 hover:text-propels-blue font-medium transition">Accueil</a>
+                    <a href="#services" class="text-gray-600 hover:text-propels-blue font-medium transition">Nos Services</a>
+                    <a href="a-propos.html" class="text-gray-600 hover:text-propels-blue font-medium transition">À Propos</a>
+                    <a href="#contact" class="bg-propels-blue text-white px-6 py-2.5 rounded-full font-medium hover:bg-blue-800 transition shadow-lg shadow-blue-500/30">
+                        Nous Contacter
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-propels-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
+                <a href="#accueil" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-propels-blue hover:bg-gray-50 rounded-md">Accueil</a>
+                <a href="#services" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-propels-blue hover:bg-gray-50 rounded-md">Nos Services</a>
+                <a href="a-propos.html" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-propels-blue hover:bg-gray-50 rounded-md">À Propos</a>
+                <a href="#contact" class="block mt-4 text-center bg-propels-blue text-white px-6 py-3 rounded-md font-medium hover:bg-blue-800 transition">
+                    Nous Contacter
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden hero-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-propels-blue font-semibold text-sm mb-6 border border-blue-200 shadow-sm">
+                        Cabinet d'Expertise
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-propels-dark leading-tight mb-6">
+                        Conseils en <span class="text-propels-blue relative inline-block">Gestion<svg class="absolute w-full h-3 -bottom-1 left-0 text-propels-orange opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"/></svg></span><br>d'Entreprises
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Propels, la solution pour une entreprise prospère. Nous vous accompagnons de la création à la gestion quotidienne de vos affaires.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#services" class="bg-propels-dark text-white px-8 py-3.5 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg flex items-center justify-center gap-2">
+                            Découvrir nos services <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/22675774473" target="_blank" class="bg-green-500 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-xl"></i> Discutons sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image Area -->
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute top-0 right-0 w-72 h-72 bg-propels-blue rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                    <div class="absolute top-0 -right-4 w-72 h-72 bg-propels-orange rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                    
+                    <div class="relative w-full max-w-md mx-auto aspect-[4/5]">
+                        <div class="w-full h-full object-cover rounded-3xl shadow-2xl overflow-hidden border-8 border-white relative z-10 shape-blob bg-gray-200">
+                             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Consultante Professionnelle" class="w-full h-full object-cover">
+                             <div class="absolute inset-0 bg-gradient-to-t from-propels-dark/50 to-transparent"></div>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl z-20 border border-gray-100 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-propels-blue text-white rounded-full flex items-center justify-center text-xl shadow-inner">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">Croissance</p>
+                                <p class="font-bold text-propels-dark text-lg">Garantie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-propels-orange uppercase tracking-wider mb-2">Nos Domaines d'Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-propels-dark">Comment nous vous aidons</h3>
+                <div class="mt-4 w-24 h-1.5 bg-propels-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Création d'Entreprises -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Création d'Entreprises</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Nous gérons toutes les formalités pour donner vie à votre projet.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> RCCM</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> IFU</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> CNSS</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> CPC</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Expertise Comptable -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Expertise Comptable</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Gardez un œil clair sur vos finances grâce à notre expertise rigoureuse.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Externalisation comptable (saisie, comptes annuels, liasses fiscales)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Révision des comptes & états financiers</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Reporting, tableaux de bord & gestion analytique</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Contrôle budgétaire & gestion de trésorerie</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Procédures de contrôle interne</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Gestion de la plateforme e-syntax</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Mise en conformité & Gestion SYCEBNL -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-book-bookmark"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Mise en conformité & Gestion SYCEBNL</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Accompagnement dédié au Système Comptable des Entités à But Non Lucratif (ONG, Associations, Cultes).
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Mise en place et transition vers le SYCEBNL</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Diagnostic comptable initial et évaluation des écarts avec l'ancien système</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Élaboration d'un plan comptable spécifique adapté aux activités (projets, cultes, cotisations, dons)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Paramétrage de votre logiciel comptable selon la nomenclature du SYCEBNL</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Assistance Fiscale -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Assistance Fiscale</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Optimisez votre fiscalité et soyez en règle avec l'administration.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Télédéclaration & optimisation fiscale</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Fiscalité internationale (prix de transfert)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Catégorisation fiscale et douanière</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Impôt sur les sociétés, TVA, droits d'enregistrement</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Sécurisation des positions fiscales & veille réglementaire</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Assistance et défense en cas de contrôle fiscal</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5: Gestion Sociale & Paie -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Gestion Sociale & Paie</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Externalisez la paie et optimisez la gestion de vos ressources humaines.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Élaboration des bulletins de paie & déclarations sociales</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Recrutement & renforcement des capacités</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Conseil social (embauche, licenciement, restructuration)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Rédaction de contrats de travail & mobilité internationale</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Gestion des précontentieux prudhommaux</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Cartographie des emplois & optimisation des rémunérations</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Audit de conformité (droit du travail et paies)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6: Affaires Juridiques -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Affaires Juridiques</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Sécurisez votre activité avec des documents légaux irréprochables.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Constitution de sociétés & rédaction de statuts</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Règlement intérieur, procès-verbaux, actes de cession</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Secrétariat du conseil d'administration</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Due diligence en cas de fusions/acquisitions</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Contrats commerciaux & pactes d'actionnaires</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Gouvernance d'entreprise (chartes, délégations de pouvoirs)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 7: Montage de Projets & Formation -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Montage Projets & Formation</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Donnez vie à vos idées et renforcez les capacités de vos équipes.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Plans d'affaires selon les canevas des partenaires</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Projets de développement & projets de société</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Formations : gouvernance, comptabilité, finance</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Formations : contrôle de gestion, RH, fiscalité, achats</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Formations : audit, évaluation des risques & assurance</li>
+                    </ul>
+                </div>
+
+                <!-- Service 8: Stratégie Patrimoniale -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Stratégie Patrimoniale</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Préservez et développez votre patrimoine grâce à un conseil personnalisé.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Audit patrimonial (analyse, diagnostic, prescription)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Bilan patrimonial & déclarations d'impôt sur le revenu</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Stratégie de rémunération et de retraite</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Conseil et accompagnement inscrit dans la durée</li>
+                    </ul>
+                </div>
+
+                <!-- Service 9: Transaction Services -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Transaction Services</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Sécurisez vos opérations de croissance externe et de cession.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Due diligence acheteur et due diligence vendeur</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Intégration de filiale & comptes pro forma</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Cession d'activité & business plan associé</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Évaluation d'actifs et d'instruments de capitaux propres</li>
+                    </ul>
+                </div>
+
+                <!-- Service 10: Consolidation & Reporting Groupe -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Consolidation & Reporting Groupe</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Fiabilisez vos comptes consolidés et vos processus de clôture.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Accompagnement technique des processus de consolidation</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Optimisation des délais de clôture & formation des équipes</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Externalisation complète des comptes consolidés</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Plaquette financière selon les normes en vigueur</li>
+                    </ul>
+                </div>
+
+                <!-- Service 11: Services aux Investisseurs de l'Immobilier -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Investisseurs de l'Immobilier</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Un accompagnement dédié pour vos portefeuilles immobiliers.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Externalisation comptable de portefeuille immobilier</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Reprise des éléments comptables et financiers</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Conseil comptable et financier (acquisitions/cessions)</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Assistance en fiscalité immobilière & TVA</li>
+                    </ul>
+                </div>
+
+                <!-- Service 12: Fournitures & Équipements -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-100 text-propels-blue rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-propels-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-propels-dark mb-4">Fournitures & Équipements</h4>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Équipez vos bureaux avec du matériel de qualité, fiable et performant.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Fournitures de bureau</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Matériel et mobilier de bureau</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Matériel informatique</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check-circle text-propels-orange mt-0.5"></i> Consommables bureautiques et informatiques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-propels-orange uppercase tracking-wider mb-2">Contactez-nous</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-propels-dark">Prêt à propulser votre entreprise ?</h3>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 bg-white rounded-2xl shadow-xl p-8 lg:p-12">
+                <!-- Contact Info -->
+                <div class="w-full lg:w-1/3 space-y-8">
+                    <div>
+                        <h4 class="text-2xl font-bold text-propels-dark mb-6">Nos informations</h4>
+                        <p class="text-gray-600 mb-8">N'hésitez pas à nous joindre pour toute consultation, création ou demande d'accompagnement.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Adresse -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-orange-50 text-propels-orange rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">Adresse</p>
+                                <p class="text-propels-dark font-semibold">Secteur N°25 Kouritenga<br>Ouagadougou, Burkina Faso</p>
+                            </div>
+                        </div>
+
+                        <!-- Phones -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-blue-50 text-propels-blue rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">Appelez-nous</p>
+                                <a href="tel:+22670189624" class="text-propels-dark font-semibold hover:text-propels-blue block">+226 70 18 96 24</a>
+                                <a href="tel:+22678738045" class="text-propels-dark font-semibold hover:text-propels-blue block">+226 78 73 80 45</a>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-2xl shrink-0">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">WhatsApp direct</p>
+                                <a href="https://wa.me/22675774473" target="_blank" class="text-propels-dark font-semibold hover:text-green-600 block">+226 75 77 44 73</a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-blue-50 text-propels-blue rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">Email</p>
+                                <a href="mailto:Propelssarl@gmail.com" class="text-propels-dark font-semibold hover:text-propels-blue break-all">Propelssarl@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="w-full lg:w-2/3">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+                                <input type="text" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-propels-blue focus:border-propels-blue outline-none transition" placeholder="Votre nom" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
+                                <input type="tel" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-propels-blue focus:border-propels-blue outline-none transition" placeholder="Votre numéro" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Adresse email <span class="font-normal text-gray-400">(facultatif)</span></label>
+                            <input type="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-propels-blue focus:border-propels-blue outline-none transition" placeholder="votre.email@exemple.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Service(s) souhaité(s) <span class="font-normal text-gray-400">(sélection multiple possible)</span></label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Création d'entreprise" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Création d'entreprise</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Expertise comptable" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Expertise comptable</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Mise en conformité SYCEBNL" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Mise en conformité SYCEBNL</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Assistance fiscale" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Assistance fiscale</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Gestion sociale et paie" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Gestion sociale et paie</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Affaires juridiques" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Affaires juridiques</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Montage de projets & Formation" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Montage de projets & Formation</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Stratégie patrimoniale" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Stratégie patrimoniale</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Transaction Services" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Transaction Services</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Consolidation & Reporting" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Consolidation & Reporting</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Investisseurs de l'immobilier" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Investisseurs de l'immobilier</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Achat de matériel / Fournitures" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Achat de matériel / Fournitures</span>
+                                </label>
+                                <label class="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300 hover:border-propels-blue transition cursor-pointer has-[:checked]:border-propels-blue has-[:checked]:bg-blue-50">
+                                    <input type="checkbox" name="services" value="Autre service" class="w-4 h-4 text-propels-blue rounded focus:ring-propels-blue">
+                                    <span class="text-sm text-gray-700">Autre service</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Votre message</label>
+                            <textarea rows="4" name="message" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-propels-blue focus:border-propels-blue outline-none transition resize-none" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                        </div>
+
+                        <!-- Honeypot anti-spam -->
+                        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+                        <button type="submit" id="contact-submit" class="w-full bg-propels-blue text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-lg">
+                            Envoyer le message
+                        </button>
+
+                        <p id="contact-status" class="text-sm text-center hidden"></p>
+                    </form>
+
+                    <script>
+                        const form = document.getElementById('contact-form');
+                        const submitBtn = document.getElementById('contact-submit');
+                        const status = document.getElementById('contact-status');
+
+                        form.addEventListener('submit', async (event) => {
+                            event.preventDefault();
+
+                            const formData = new FormData(form);
+                            const services = formData.getAll('services');
+
+                            if (services.length === 0) {
+                                status.textContent = 'Merci de sélectionner au moins un service.';
+                                status.className = 'text-sm text-center text-red-600 font-medium';
+                                status.classList.remove('hidden');
+                                return;
+                            }
+
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = 'Envoi en cours...';
+                            status.classList.add('hidden');
+
+                            const data = Object.fromEntries(formData.entries());
+                            data.services = services;
+
+                            try {
+                                const response = await fetch('/api/contact', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(data)
+                                });
+
+                                if (!response.ok) throw new Error('Request failed');
+
+                                form.reset();
+                                status.textContent = 'Merci ! Votre message a bien été envoyé, nous vous répondrons rapidement.';
+                                status.className = 'text-sm text-center text-green-600 font-medium';
+                            } catch (err) {
+                                status.textContent = "Une erreur s'est produite. Merci de réessayer ou de nous contacter directement par email.";
+                                status.className = 'text-sm text-center text-red-600 font-medium';
+                            } finally {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = 'Envoyer le message';
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-propels-dark pt-16 pb-8 border-t-4 border-propels-orange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand & Legal Info -->
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center relative bg-white">
+                            <span class="text-propels-dark font-bold text-xl">P</span>
+                        </div>
+                        <span class="font-bold text-2xl text-white tracking-tight">ropels</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Conseils en gestion d'entreprises. La solution pour une entreprise prospère au Burkina Faso.
+                    </p>
+                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700 inline-block w-full sm:w-auto">
+                        <p class="text-sm text-gray-300 font-medium">Société à Responsabilité Limitée (SARL)</p>
+                        <p class="text-xs text-propels-orange font-bold mt-1">Capital : 3 000 000 FCFA</p>
+                        <div class="pt-3 mt-3 border-t border-gray-700 space-y-1">
+                            <p class="text-xs text-gray-400">RCCM : <span class="font-mono text-gray-300">BF-OUA-01-2025-B12-08409</span></p>
+                            <p class="text-xs text-gray-400">IFU : <span class="font-mono text-gray-300">00272232U</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Liens rapides</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#accueil" class="text-gray-400 hover:text-propels-orange transition">Accueil</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-propels-orange transition">Nos Services</a></li>
+                        <li><a href="a-propos.html" class="text-gray-400 hover:text-propels-orange transition">À Propos</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-propels-orange transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coordonnées -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Nos Coordonnées</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-propels-orange w-5 text-center"></i>
+                            <span>Secteur N°25 Kouritenga<br>Ouagadougou, Burkina Faso</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone-alt mt-1 text-propels-orange w-5 text-center"></i>
+                            <div class="flex flex-col">
+                                <a href="tel:+22670189624" class="hover:text-white transition">+226 70 18 96 24</a>
+                                <a href="tel:+22678738045" class="hover:text-white transition">+226 78 73 80 45</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fab fa-whatsapp mt-1 text-green-500 w-5 text-center text-lg"></i>
+                            <a href="https://wa.me/22675774473" target="_blank" class="hover:text-white transition">+226 75 77 44 73</a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-envelope mt-1 text-propels-orange w-5 text-center"></i>
+                            <a href="mailto:Propelssarl@gmail.com" class="hover:text-white transition">Propelssarl@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="year"></span> Propels SARL. Tous droits réservés.
+                </p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
