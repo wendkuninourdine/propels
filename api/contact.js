@@ -29,12 +29,25 @@ export default async function handler(req, res) {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-  // Traitement des services (tableau ou chaîne unique)
+  // Traitement des services (tableau ou chaîne unique) - Un service par ligne
   let servicesFormatted = 'Non précisé';
   if (Array.isArray(services) && services.length > 0) {
-    servicesFormatted = services.map(s => escapeHtml(s)).join(', ');
+    // Si c'est un tableau, on génère une liste à puces HTML
+    const listItems = services.map(s => `<li>${escapeHtml(s)}</li>`).join('');
+    servicesFormatted = `<ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">${listItems}</ul>`;
   } else if (typeof services === 'string' && services.trim() !== '') {
-    servicesFormatted = escapeHtml(services);
+    // Si la chaîne contient des virgules ou sauts de ligne, on gère l'affichage par ligne
+    const serviceList = services
+      .split(/,|\n/)
+      .map(s => s.trim())
+      .filter(s => s !== '');
+
+    if (serviceList.length > 1) {
+      const listItems = serviceList.map(s => `<li>${escapeHtml(s)}</li>`).join('');
+      servicesFormatted = `<ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">${listItems}</ul>`;
+    } else {
+      servicesFormatted = escapeHtml(services);
+    }
   } else if (typeof service === 'string' && service.trim() !== '') {
     servicesFormatted = escapeHtml(service);
   }
@@ -61,7 +74,8 @@ export default async function handler(req, res) {
           <p><strong>Nom :</strong> ${escapeHtml(name)}</p>
           <p><strong>Téléphone :</strong> ${escapeHtml(phone)}</p>
           <p><strong>Adresse e-mail :</strong> ${validEmail ? escapeHtml(validEmail) : '<em>Non renseignée</em>'}</p>
-          <p><strong>Service(s) sélectionné(s) :</strong> ${servicesFormatted}</p>
+          <p><strong>Service(s) sélectionné(s) :</strong></p>
+          ${servicesFormatted.startsWith('<ul') ? servicesFormatted : `<p>${servicesFormatted}</p>`}
           <p><strong>Message :</strong></p>
           <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
         `,
