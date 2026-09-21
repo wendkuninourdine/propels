@@ -51,8 +51,8 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         // Doit correspondre à un domaine vérifié dans Resend (voir README.md)
-        from: 'Site Propels <site@votredomaine.com>',
-        to: ['Propelssarl@gmail.com'],
+        from: 'Site Propels <onboarding@resend.dev>',
+        to: ['wendkuni.nourdine@gmail.com'],
         // On n'indique 'reply_to' que si l'utilisateur a renseigné un e-mail
         reply_to: validEmail || undefined,
         subject: `Nouveau message du site - ${escapeHtml(name)}`,
